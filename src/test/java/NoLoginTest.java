@@ -159,7 +159,8 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());    
 
         //check login button
-        assertEquals("登入", driver.findElement(By.cssSelector("#menu>.pull-right.menu>li:last-child"))
+        String loginButtonLabel = driver.findElement(By.cssSelector("#menu>.pull-right.menu>li:last-child")).getText();
+        assertEquals("登入", loginButtonLabel);
         
         driver.quit();
         System.out.println("testing finished");
