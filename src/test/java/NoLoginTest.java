@@ -143,7 +143,6 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
     }
 
     public NoLoginTest(DesiredCapabilities pCaps) {
-        System.out.println("new a test instance");
         this.caps = pCaps;
     }
 
@@ -159,14 +158,13 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         System.out.println("URL:" + url);
         driver.get(url);
         // check page title
-        // assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());
+        System.out.println("Page Title:" + driver.getTitle());
+        //assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());
 
         // check entry page
-        if (driver.findElement(By.cssSelector("#menu>.pull-right>li:last-child"))!=null) {
-            System.out.println("#menu exist");
-        }else {
-            System.out.println("#menu not exist");
-        }
+        WebElement btnLogin = driver.findElementsByCssSelector("#menu>.pull-right.menu>li:last-child");
+        String loginButtonLabel = btnLogin.getText();
+        System.out.println(loginButtonLabel);
         
 
         // check login button
@@ -175,8 +173,7 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         // assertNotNull(el);
 
         // System.out.println(el.getAttribute("outerHTML"));
-        // WebElement btnLogin = driver.findElementsByCssSelector("#menu>.pull-right.menu>li:last-child");
-        // String loginButtonLabel = btnLogin.getText();
+        
         // assertEquals("登入", loginButtonLabel);
         
         driver.quit();
