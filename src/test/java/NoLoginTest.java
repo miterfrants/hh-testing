@@ -164,7 +164,7 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         assertNotNull("Can't find login button in page",elements);
         assertTrue(elements.size()==1);
 
-        System.out.println(element[0].getAttribute("outerHTML"));
+        System.out.println(elements[0].getAttribute("outerHTML"));
         // WebElement btnLogin = driver.findElementsByCssSelector("#menu>.pull-right.menu>li:last-child");
         // String loginButtonLabel = btnLogin.getText();
         // assertEquals("登入", loginButtonLabel);
