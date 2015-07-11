@@ -12,25 +12,20 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.*;
 
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.lang.Object;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class NoLoginTest implements SauceOnDemandSessionIdProvider
@@ -145,6 +140,7 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
     }
 
     public NoLoginTest(DesiredCapabilities pCaps) {
+        System.out.println("new a test instance");
         this.caps = pCaps;
     }
 
@@ -157,19 +153,11 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         this.sessionId = ((RemoteWebDriver)driver).getSessionId().toString();
 
         String url = "http://hahow.csie.org/";
-        System.out.println("URL:" + url);
         driver.get(url);
-        // check page title
-        WebDriverWait wait = new WebDriverWait(driver, 2);
-        wait.until(ExpectedConditions.titleContains("Hahow 好學校"));
-
-        // check entry page
-        WebElement btnLogin = driver.findElement(By.cssSelector("#menu>.pull-right.menu>li:last-child"));
-        String loginButtonLabel = btnLogin.getText();
-        assertEquals("登入", loginButtonLabel);
-
+        System.out.println("URL:" + url);
+        assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());    
         driver.quit();
-        System.out.println("testing finished");
+        System.out.println("job finished");
     }
 
     @Override
