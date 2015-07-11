@@ -155,11 +155,14 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         String url = "http://hahow.csie.org/";
         System.out.println("URL:" + url);
         driver.get(url);
-        //check entry page
+        // check entry page
         assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());    
 
-        //check login button
-        WebElement element = driver.findElementsByCssSelector("#menu");
+        // check login button
+        List<WebElement> elements = driver.findElementsByCssSelector("#menu");
+        assertNotNull("Can't find login button in page",elements);
+        assertTrue(elements.size()==1);
+        
         System.out.println(element.getAttribute("outerHTML"));
         // WebElement btnLogin = driver.findElementsByCssSelector("#menu>.pull-right.menu>li:last-child");
         // String loginButtonLabel = btnLogin.getText();
