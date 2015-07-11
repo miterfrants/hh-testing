@@ -12,6 +12,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -162,7 +163,7 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         List<WebElement> elements = driver.findElementsByCssSelector("#menu");
         assertNotNull("Can't find login button in page",elements);
         assertTrue(elements.size()==1);
-        
+
         System.out.println(element.getAttribute("outerHTML"));
         // WebElement btnLogin = driver.findElementsByCssSelector("#menu>.pull-right.menu>li:last-child");
         // String loginButtonLabel = btnLogin.getText();
