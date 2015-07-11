@@ -159,7 +159,7 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         System.out.println("URL:" + url);
         driver.get(url);
         // check entry page
-        if (driver.findElement(By.cssSelector("#menu"))) {
+        if (driver.findElement(By.cssSelector("#menu"))!=null) {
             System.out.println("#menu exist");
         }else {
             System.out.println("#menu not exist");
