@@ -12,20 +12,25 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.*;
 
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.lang.Object;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
 
 @RunWith(Parameterized.class)
 public class NoLoginTest implements SauceOnDemandSessionIdProvider
@@ -140,7 +145,6 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
     }
 
     public NoLoginTest(DesiredCapabilities pCaps) {
-        System.out.println("new a test instance");
         this.caps = pCaps;
     }
 
@@ -148,16 +152,24 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
     public void webDriver() throws Exception {
         System.out.println("testing start");
         driver = new RemoteWebDriver(
-            new URL("http://miterfrants:08d2200d-eabe-4d7e-817b-ecb7fb03af57@ondemand.saucelabs.com:80/wd/hub"),
+            new URL("http://peterhahow:d8525bee-353d-434b-8935-722f7e4f07a9@ondemand.saucelabs.com:80/wd/hub"),
             this.caps);
         this.sessionId = ((RemoteWebDriver)driver).getSessionId().toString();
 
         String url = "http://hahow.csie.org/";
-        driver.get(url);
         System.out.println("URL:" + url);
-        assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());    
+        driver.get(url);
+        // check page title
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.titleContains("Hahow 好學校"));
+
+        // check entry page
+        WebElement btnLogin = driver.findElement(By.cssSelector("#menu>.pull-right.menu>li:last-child"));
+        String loginButtonLabel = btnLogin.getText();
+        assertEquals("登入", loginButtonLabel);
+
         driver.quit();
-        System.out.println("job finished");
+        System.out.println("testing finished");
     }
 
     @Override
