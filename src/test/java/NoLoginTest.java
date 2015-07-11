@@ -26,7 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*
 
 @RunWith(Parameterized.class)
 public class NoLoginTest implements SauceOnDemandSessionIdProvider
