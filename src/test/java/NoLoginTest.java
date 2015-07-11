@@ -16,12 +16,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.lang.Object;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -158,14 +160,15 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         System.out.println("URL:" + url);
         driver.get(url);
         // check page title
-        System.out.println("Page Title:" + driver.getTitle());
-        //assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.titleContains("Hahow 好學校"));
+        // System.out.println("Page Title:" + driver.getTitle());
+        // assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());
 
         // check entry page
         WebElement btnLogin = driver.findElement(By.cssSelector("#menu>.pull-right.menu>li:last-child"));
         String loginButtonLabel = btnLogin.getText();
-        System.out.println(loginButtonLabel);
-        
+        assertThat("Button Label is not '登入'", loginButtonLabel, is("登入"))
 
         // check login button
         // System.out.println("check login button");
