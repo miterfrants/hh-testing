@@ -158,10 +158,10 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         System.out.println("URL:" + url);
         driver.get(url);
         // check entry page
-        if (!wd.findElement(By.cssSelector("#menu>.pull-right>li:last-child")).getText().equals("登入")) {
+        if (!driver.findElement(By.cssSelector("#menu>.pull-right>li:last-child")).getText().equals("登入")) {
             System.out.println("verifyText failed");
         }else {
-                        
+
         }
         // assertEquals("分享，學習 - Hahow 好學校", driver.getTitle());    
 
