@@ -121,18 +121,18 @@ public class NoLoginTest implements SauceOnDemandSessionIdProvider
         capsAndroid44.setCapability("deviceOrientation", "portrait");
 
         Object[][] caps = {
-            {capsIE11Win81},
-            {capsChromeWin81},
-            {capsFirefoxWin81},
-            {capsIE11Win7},
-            {capsChromeWin7},
-            {capsFirefoxWin7},
-            {capsChromeMac1010},
-            {capsSafariMac1010},
-            {capsFirefoxMac1010},
-            {capsIphone82},
-            {capsIphone81},
-            {capsiPad}
+            {capsIE11Win81}
+            // {capsChromeWin81},
+            // {capsFirefoxWin81},
+            // {capsIE11Win7},
+            // {capsChromeWin7},
+            // {capsFirefoxWin7},
+            // {capsChromeMac1010},
+            // {capsSafariMac1010},
+            // {capsFirefoxMac1010},
+            // {capsIphone82},
+            // {capsIphone81},
+            // {capsiPad}
         };
 
         return Arrays.asList(caps);
